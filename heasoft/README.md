@@ -20,8 +20,9 @@ docker pull dustpancake/heasoft:6.30.1-aarch64
 
 Dockerfiles for these images are modified from the [HEASoft docker installation](https://heasarc.gsfc.nasa.gov/lheasoft/docker.html). In particular, the ARM version of this image does not include SUZAKU mission specifics.
 
-To build locally:
-```
+## Building locally
+To build locally, clone this repository and change to the `heasoft` directory.
+```bash
 git clone https://github.com/astro-group-bristol/astro-software-installers
 cd astro-software-installers/heasoft
 ```
@@ -38,11 +39,11 @@ The Dockerfiles have been modified to copy in the source from the host machine t
 Finally, build the image in the usual way, with the option of specifying architecture as a build argument:
 
 - x86 CPUs
-```
+```bash
 docker build . -t heasoft --build-arg ARCH=x86_64
 ```
 
 - ARM and Apple Silicon
-```
+```bash
 docker build . -t heasoft --build-arg ARCH=aarch64
 ```
