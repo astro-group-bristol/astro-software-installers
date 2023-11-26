@@ -43,19 +43,10 @@ RUN groupadd heasoft && useradd -r -m -g heasoft heasoft \
 
 WORKDIR /home/heasoft
 
-# do the wget on the host machine -- less likely to go wrong later on. also have to remove suzaku, since architecture issues
-# and nasty segfaulting
-# ```bash
-# wget "https://heasarc.gsfc.nasa.gov/FTP/software/lheasoft/lheasoft${HEASOFT_VERSION}/heasoft-${HEASOFT_VERSION}src.tar.gz" \
-#     && tar xfz heasoft-${HEASOFT_VERSION}src.tar.gz \
-#     && rm -r heasoft-${HEASOFT_VERSION}src.tar.gz heasoft-${HEASOFT_VERSION}/suzaku
-# ```
-# then copy in the source code:
 COPY heasoft-${HEASOFT_VERSION} /home/heasoft/heasoft-${HEASOFT_VERSION}
- 
+
 WORKDIR /home/heasoft/heasoft-${HEASOFT_VERSION}/BUILD_DIR/
 RUN ./configure --prefix=/opt/heasoft
-
 
 # this can clutter the build output if something fails
 # to increase the log size for debugging, use docker buildx:
