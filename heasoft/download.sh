@@ -10,7 +10,4 @@ tar xfz heasoft-${HEASOFT_VERSION}src.tar.gz
 # do some cleanup for macos aarch64
 # can't seem to get suzaku to compile
 rm -r heasoft-${HEASOFT_VERSION}src.tar.gz heasoft-${HEASOFT_VERSION}/suzaku
-if [[ "${DATA_FREE}" == "true" ]]; then
-    rm 
-fi
 
