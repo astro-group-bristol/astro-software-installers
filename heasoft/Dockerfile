@@ -1,7 +1,7 @@
 # Dockerfile for complete HEASoft downloads
-FROM ubuntu:20.04
+FROM ubuntu:22.04
 
-ARG HEASOFT_VERSION=6.30.1
+ARG HEASOFT_VERSION=6.32.1
 # architectures: x86_64 or aarch64
 ARG ARCH=aarch64
 
@@ -22,13 +22,16 @@ RUN apt-get update \
 	ncurses-dev \
 	perl-modules \
 	python3-dev \
-	python3-astropy \
-	python3-numpy \
+	python3-astroquery \
+	python3-pandas \
 	python3-pip \
-	python3-scipy \
+	python3-pyvo \
 	python3-setuptools \
 	python-is-python3 \
+	ipython3 \
+	saods9 \
 	tcsh \
+	vim \
 	wget \
 	xorg-dev \
  && apt-get clean \
@@ -73,7 +76,7 @@ RUN /bin/bash -c 'cd /opt/heasoft/; for loop in ${ARCH}*/*; do ln -sf $loop; don
  && rm -rf Xspec/src/spectral
 
 RUN cp -p /home/heasoft/heasoft-${HEASOFT_VERSION}/Release_Notes* /opt/heasoft/
- 
+
 # Configure shells...
 RUN /bin/echo >> /home/heasoft/.bashrc \
  && /bin/echo '# Initialize HEASoft environment' >> /home/heasoft/.bashrc \
@@ -143,3 +146,4 @@ ENV CC=/usr/bin/gcc \
     CALDBALIAS=/opt/heasoft/caldb/alias_config.fits
 
 CMD [ "fversion" ]
+
